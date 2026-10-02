@@ -1,0 +1,13 @@
+# PII + private career docs — NEVER push publicly
+career/
+cv/
+visa/
+applications/
+*.pdf
+*.docx
+.env
+*.pem
+*.key
+node_modules/
+.DS_Store
+Thumbs.db

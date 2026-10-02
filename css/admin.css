@@ -1,0 +1,434 @@
+/* ============================================================
+   AVIATOR ADMIN PANEL STYLES (admin.html)
+   Separate "back office" theme, distinct from the game page.
+   ============================================================ */
+
+:root {
+    --bg: #0e1320;
+    --bg-2: #141b2b;
+    --card: #1b2436;
+    --card-2: #212d43;
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #e6edf7;
+    --muted: #8b96ad;
+    --accent: #22d3ee;
+    --success: #34d399;
+    --warn: #fbbf24;
+    --danger: #f87171;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(1200px 600px at 20% -10%, #1b2740 0%, var(--bg) 55%);
+    min-height: 100vh;
+    color: var(--text);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.btn-block { width: 100%; }
+
+.btn-primary { background: var(--accent); color: #08202b; }
+.btn-primary:hover { box-shadow: 0 0 18px rgba(34, 211, 238, 0.55); }
+
+.btn-success { background: var(--success); color: #04231a; }
+.btn-success:hover { box-shadow: 0 0 18px rgba(52, 211, 153, 0.55); }
+
+.btn-danger { background: var(--danger); color: #2a0a0a; }
+.btn-danger:hover { box-shadow: 0 0 18px rgba(248, 113, 113, 0.55); }
+
+.btn-ghost { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.16); }
+
+/* ---------- Login ---------- */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 36px 30px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.login-logo {
+    font-size: 42px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.6));
+}
+
+.login-card h1 { font-size: 26px; margin-bottom: 6px; }
+.login-card h1 span { color: var(--accent); }
+
+.login-card .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 20px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 13px 14px;
+    margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.login-card input:focus { border-color: var(--accent); }
+
+.back-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.back-link:hover { color: var(--text); }
+
+/* ---------- Topbar ---------- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(11, 15, 26, 0.7);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.brand { font-size: 20px; font-weight: 800; }
+.brand span {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 8px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.live-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+    50% { opacity: 0.5; box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+}
+
+.player-chip {
+    background: var(--card-2);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.player-chip b { color: var(--text); }
+
+/* ---------- Layout ---------- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+
+/* ---------- Stats ---------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+}
+
+.stat-card .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.stat-card .value { font-size: 24px; font-weight: 800; }
+.stat-card .value.accent { color: var(--accent); }
+.stat-card .value.success { color: var(--success); }
+.stat-card .value.warn { color: var(--warn); }
+.stat-card .value.danger { color: var(--danger); }
+
+/* ---------- Tabs ---------- */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 10px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.tab:hover { color: var(--text); }
+
+.tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #08202b;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---------- Cards ---------- */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 800px) {
+    .two-col { grid-template-columns: 1fr; }
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 14px;
+}
+
+.card label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin: 12px 0 6px;
+}
+
+.card input {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.card input:focus { border-color: var(--accent); }
+
+.card .btn { margin-top: 14px; }
+
+.card .hint { font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+
+/* ---------- Requests ---------- */
+.req-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-2);
+    border-left: 4px solid var(--warn);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.req-item.deposit { border-left-color: var(--success); }
+
+.req-info { display: flex; flex-direction: column; gap: 3px; font-size: 14px; }
+.req-info .req-sub { font-size: 12px; color: var(--muted); }
+
+.req-actions { display: flex; gap: 8px; }
+
+.req-actions button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-approve { background: var(--success); color: #04231a; }
+.btn-approve:hover { box-shadow: 0 0 14px rgba(52, 211, 153, 0.6); }
+.btn-reject { background: var(--danger); color: #2a0a0a; }
+.btn-reject:hover { box-shadow: 0 0 14px rgba(248, 113, 113, 0.6); }
+
+/* ---------- Table ---------- */
+.table-wrap { overflow-x: auto; }
+
+.tx-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tx-table th {
+    text-align: left;
+    padding: 10px 12px;
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.tx-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: nowrap;
+}
+
+.tx-table tr:hover td { background: rgba(255, 255, 255, 0.03); }
+
+.badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.pending { background: rgba(251, 191, 36, 0.15); color: var(--warn); }
+.badge.approved { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+.badge.rejected { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+
+.type-icon { font-size: 15px; margin-right: 6px; }
+.amount.pos { color: var(--success); font-weight: 700; }
+.amount.neg { color: var(--warn); font-weight: 700; }
+
+.empty-state {
+    text-align: center;
+    color: var(--muted);
+    padding: 26px;
+    font-size: 13px;
+}
+
+/* ---------- Toasts ---------- */
+.toasts {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--card-2);
+    border: 1px solid var(--border);
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s;
+    max-width: 90vw;
+}
+
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { border-color: var(--success); }
+.toast.error { border-color: var(--danger); }
+.toast.warn { border-color: var(--warn); }

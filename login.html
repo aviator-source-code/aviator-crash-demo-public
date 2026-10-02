@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-wrap">
+        <div class="login-card">
+            <div class="brand">✈️ AVIATOR</div>
+            <p class="tagline">Crash game · earth to space</p>
+
+            <div class="mode-tabs">
+                <button class="mode-tab active" id="tabLogin" onclick="switchMode('login')">Login</button>
+                <button class="mode-tab" id="tabRegister" onclick="switchMode('register')">Register</button>
+            </div>
+
+            <div class="field">
+                <label for="username">Username</label>
+                <input type="text" id="username" autocomplete="username" spellcheck="false">
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" autocomplete="current-password">
+            </div>
+
+            <div class="field hidden" id="confirmField">
+                <label for="confirm">Confirm Password</label>
+                <input type="password" id="confirm" autocomplete="new-password">
+            </div>
+
+            <button class="btn btn-login" id="loginBtn">Login</button>
+        </div>
+    </div>
+
+    <div class="toasts" id="toasts"></div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator - Crash Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- ===================== HEADER ===================== -->
+        <header class="header">
+            <div class="logo">✈️ AVIATOR</div>
+            <div class="header-right">
+                <span class="player-chip">
+                    <span id="playerNameLabel">Player</span>
+                    <button class="edit-name" onclick="openNameModal()" title="Edit name">✎</button>
+                </span>
+                <button class="icon-btn" id="soundBtn" onclick="toggleSound()" title="Toggle sound">🔊</button>
+                <button class="btn btn-small btn-cancel" onclick="logout()">Logout</button>
+                <div class="balance">Balance: $<span id="balance">0.00</span></div>
+                <button class="btn btn-small btn-deposit" onclick="openWallet('deposit')">Deposit</button>
+                <button class="btn btn-small btn-withdraw" id="withdrawBtn" onclick="openWallet('withdraw')">Withdraw</button>
+            </div>
+        </header>
+
+        <!-- ===================== GAME + SIDE PANEL ===================== -->
+        <div class="main-row">
+            <div class="game-area" id="gameArea">
+                <div class="sky"></div>
+                <div class="sun"></div>
+                <div class="clouds" id="clouds"></div>
+                <div class="stars" id="stars"></div>
+                <div class="ground"></div>
+
+                <div class="mountain ridge-back" style="left: 6%;"></div>
+                <div class="mountain ridge-back" style="left: 30%;"></div>
+                <div class="mountain ridge-back" style="left: 55%;"></div>
+                <div class="mountain ridge-back" style="left: 78%;"></div>
+
+                <div class="mountain ridge-front" style="left: 16%;"></div>
+                <div class="mountain ridge-front" style="left: 44%;"></div>
+                <div class="mountain ridge-front" style="left: 68%;"></div>
+                <div class="mountain ridge-front" style="left: 88%;"></div>
+
+                <svg class="flight-svg" id="flightSvg">
+                    <polyline class="guide-line" id="guideLine" points=""/>
+                </svg>
+
+                <div class="round-info" id="roundInfo"></div>
+
+                <div class="chips" id="chips"></div>
+                <div class="auto-line" id="autoLine"></div>
+
+                <div class="plane-container" id="plane">
+                    <div class="plane">
+                        <svg class="jet" viewBox="0 0 160 64" xmlns="http://www.w3.org/2000/svg" aria-label="JF-17 Thunder">
+                            <path class="jet-wing" d="M102 32 L64 7 L38 29 L38 32 Z"/>
+                            <path class="jet-wing" d="M102 32 L64 57 L38 35 L38 32 Z"/>
+                            <path class="jet-tail" d="M40 32 L24 20 L12 30 Z"/>
+                            <path class="jet-tail" d="M40 32 L24 44 L12 34 Z"/>
+                            <path class="jet-fin" d="M36 32 L27 14 L12 24 L12 32 Z"/>
+                            <path class="jet-body" d="M152 32 L140 26 L120 23 L28 25 L9 32 L28 39 L120 41 L140 38 Z"/>
+                            <ellipse class="jet-canopy" cx="116" cy="32" rx="11" ry="4.2"/>
+                            <path class="jet-intake" d="M144 32 L136 35 L136 38 L146 36 Z"/>
+                            <line class="jet-line" x1="100" y1="32" x2="60" y2="32"/>
+                            <line class="jet-line" x1="84" y1="26" x2="64" y2="10"/>
+                            <line class="jet-line" x1="84" y1="38" x2="64" y2="54"/>
+                        </svg>
+                    </div>
+                    <div class="trail"></div>
+                    <div class="explosion" id="explosion">💥</div>
+                </div>
+
+                <div class="multiplier-display waiting" id="multiplier"></div>
+                <div class="message" id="message"></div>
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-tabs">
+                    <button class="tab active" data-tab="live" onclick="switchPanel('live')">Live</button>
+                    <button class="tab" data-tab="history" onclick="switchPanel('history')">Rounds</button>
+                </div>
+                <div class="panel-content" id="panelLive">
+                    <div class="feed" id="liveFeed"></div>
+                </div>
+                <div class="panel-content hidden" id="panelHistory">
+                    <div class="rounds-list" id="roundsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== CONTROLS ===================== -->
+        <div class="controls">
+            <div class="bet-section">
+                <div class="input-group">
+                    <label>Bet Amount</label>
+                    <input type="number" id="betAmount" value="10.00" min="1" step="1">
+                </div>
+
+                <div class="auto-cashout">
+                    <input type="checkbox" id="autoCashoutCheck">
+                    <label for="autoCashoutCheck">Auto cashout at</label>
+                    <input type="number" id="autoCashoutValue" value="2.00" min="1.01" step="0.01">
+                </div>
+
+                <button class="btn btn-bet" id="betBtn" onclick="placeBet()">Place Bet</button>
+                <button class="btn btn-cancel" id="cancelBetBtn" onclick="cancelBet()" disabled>Cancel</button>
+                <button class="btn btn-cashout" id="cashoutBtn" onclick="cashOut()" disabled>Cash Out</button>
+            </div>
+            <div class="round-status" id="roundStatus">Waiting for the next round…</div>
+        </div>
+    </div>
+
+    <!-- ===================== NAME MODAL ===================== -->
+    <div class="modal-overlay" id="nameModal">
+        <div class="modal">
+            <h2>👋 Welcome to Aviator</h2>
+            <p class="hint">Choose a display name. Your starting balance is $1,000.00.</p>
+            <div class="input-group">
+                <label>Player Name</label>
+                <input type="text" id="nameInput" maxlength="16" placeholder="Enter your name">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-bet" onclick="saveName()">Start Playing</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== WALLET MODAL ===================== -->
+    <div class="modal-overlay" id="walletModal">
+        <div class="modal">
+            <div class="modal-head">
+                <h2>💳 Wallet</h2>
+                <button class="modal-close" onclick="closeModal('walletModal')">✕</button>
+            </div>
+            <p class="hint">Deposits and withdrawals require <b>admin approval</b> before they affect your balance.</p>
+
+            <div class="wallet-stats">
+                <div class="wallet-stat">
+                    <div class="label">Available Balance</div>
+                    <div class="value" id="walletBalance">$0.00</div>
+                </div>
+                <div class="wallet-stat">
+                    <div class="label">Pending Deposit</div>
+                    <div class="value pending" id="walletPendingDeposit">$0.00</div>
+                </div>
+                <div class="wallet-stat">
+                    <div class="label">Pending Withdraw</div>
+                    <div class="value pending" id="walletPendingWithdraw">$0.00</div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Amount</label>
+                <input type="number" id="walletAmount" min="1" step="1" placeholder="0.00">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-deposit" id="walletDepositBtn" onclick="requestDeposit()">Request Deposit</button>
+                <button class="btn btn-withdraw" id="walletWithdrawBtn" onclick="requestWithdraw()">Request Withdrawal</button>
+            </div>
+
+            <div class="tx-list">
+                <h3>Transaction History</h3>
+                <div id="walletTxList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toasts" id="toasts"></div>
+
+    <script src="js/music.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

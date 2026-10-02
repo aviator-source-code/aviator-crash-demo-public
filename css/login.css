@@ -1,0 +1,168 @@
+/* ============================================================
+   AVIATOR LOGIN PAGE STYLES (login.html)
+   Same visual language as the game page so the flow feels
+   continuous: neon red accents on a dark space-blue canvas.
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden { display: none !important; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    color: #fff;
+    background: linear-gradient(180deg, #05030f 0%, #0b1a3a 35%, #14406e 70%, #2e6a9e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(13, 20, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 34px 30px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+}
+
+.brand {
+    font-size: 30px;
+    font-weight: bold;
+    color: #e94560;
+    text-shadow: 0 0 22px rgba(233, 69, 96, 0.55);
+}
+
+.tagline {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 6px 0 24px;
+}
+
+.mode-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.mode-tab {
+    flex: 1;
+    padding: 11px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mode-tab:hover { color: #fff; }
+
+.mode-tab.active {
+    background: rgba(233, 69, 96, 0.16);
+    border-color: #e94560;
+    color: #e94560;
+    box-shadow: 0 0 16px rgba(233, 69, 96, 0.25);
+}
+
+.field {
+    text-align: left;
+    margin-bottom: 14px;
+}
+
+.field label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 6px;
+}
+
+.field input {
+    width: 100%;
+    padding: 13px 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.field input:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #e94560, #c73e54);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-login:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 26px rgba(233, 69, 96, 0.55);
+}
+
+/* ---------- Toasts ---------- */
+.toasts {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    pointer-events: none;
+}
+
+.toast {
+    background: #233047;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s;
+    max-width: 90vw;
+}
+
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.error { border-color: #e94560; }
+.toast.success { border-color: #4ecca3; }
