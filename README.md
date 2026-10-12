@@ -1,8 +1,8 @@
 # Aviator Crash Demo — Web Game Mechanics (Public Showcase)
 
-By **Amir Hamza** (Swabi, Pakistan) — Game & Web Developer open to UAE roles with employer-sponsored work permit.
+By **Amir Hamza** — Game & Web Developer
 
-Live platform (under development): https://play999.xyz
+Live platform (under development): N/A
 
 ## What this repo is
 Public, recruiter-safe demo of crash-game front-end mechanics:
